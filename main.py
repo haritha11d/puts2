@@ -19,13 +19,11 @@ def input_handling():
     return values
 
 
-@app.route('/mean', methods=['GET', 'POST'])
-@app.route('/average', methods=['GET', 'POST'])
-@app.route('/avg', methods=['GET', 'POST'])
-def mean():
+@app.route('/max', methods=['GET', 'POST'])
+def maximum():
     try:
         values = input_handling()
-        answer = sum(values) / len(values)
+        answer = max(values)
     except ValueError:
         warning = input_handling()
         return warning
