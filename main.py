@@ -31,8 +31,4 @@ def maximum():
         if float(answer).is_integer():
             answer = int(answer)
             return "%d \n" % answer
-        return "%.4f \n" % answer
-
-
-if __name__ == "__main__":
-    app.run()
+        return str(float(round(answer, 3))) + " \n"
