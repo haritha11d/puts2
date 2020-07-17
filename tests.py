@@ -8,12 +8,6 @@ class TestCalculatorWebApp(unittest.TestCase):
         main.app.testing = True
         self.app = main.app.test_client()
 
-    def testAverage(self):
-        response = self.app.get("/mean?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
-
-        response = self.app.get("/avg?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
-
-        response = self.app.get("/average?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
+    def testMaximum(self):
+        response = self.app.get("/max?X=1,2,5,0,100")
+        self.assertEqual(b'100 \n', response.data)
