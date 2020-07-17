@@ -1,4 +1,5 @@
 from flask import Flask, request
+from fractions import Fraction
 
 app = Flask(__name__)
 
@@ -9,6 +10,13 @@ def input_handling():
 
     else:
         values = request.values.get('X', default=0, type=str)
+    try:
+        values = [Fraction(value) for value in values.split(',')]
+    except ValueError:
+        warning = "Something wrong! --> input should consist of a vector of real numbers."
+        return warning
+
+    return values
 
     return values
 
