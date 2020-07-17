@@ -10,7 +10,6 @@ def input_handling():
     else:
         values = request.values.get('X', default=0, type=str)
 
-
     return values
 
 
