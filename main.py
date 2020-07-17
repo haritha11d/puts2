@@ -18,14 +18,22 @@ def input_handling():
 
     return values
 
-    return values
-
 
 @app.route('/mean', methods=['GET', 'POST'])
 @app.route('/average', methods=['GET', 'POST'])
 @app.route('/avg', methods=['GET', 'POST'])
 def mean():
-    pass
+    try:
+        values = input_handling()
+        answer = sum(values) / len(values)
+    except ValueError:
+        warning = input_handling()
+        return warning
+    else:
+        if float(answer).is_integer():
+            answer = int(answer)
+            return "%d \n" % answer
+        return "%.4f \n" % answer
 
 
 if __name__ == "__main__":
