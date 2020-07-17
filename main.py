@@ -19,11 +19,11 @@ def input_handling():
     return values
 
 
-@app.route('/max', methods=['GET', 'POST'])
-def maximum():
+@app.route('/min', methods=['GET', 'POST'])
+def minimum():
     try:
         values = input_handling()
-        answer = max(values)
+        answer = min(values)
     except ValueError:
         warning = input_handling()
         return warning
@@ -33,6 +33,3 @@ def maximum():
             return "%d \n" % answer
         return "%.4f \n" % answer
 
-
-if __name__ == "__main__":
-    app.run()
