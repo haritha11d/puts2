@@ -13,9 +13,11 @@ def input_handling():
     try:
         values = [Fraction(value) for value in values.split(',')]
     except ValueError:
-        warning = "Something wrong! --> input should consist of a vector of real numbers."
+        warning = "Something wrong! --> input should consist of a vector of real numbers.\n"
         return warning
-
+    except TypeError:
+        warning = "Something wrong! --> input should consist of a vector of real numbers.\n"
+        return warning
     return values
 
 
@@ -27,6 +29,9 @@ def mean():
         values = input_handling()
         answer = sum(values) / len(values)
     except ValueError:
+        warning = input_handling()
+        return warning
+    except TypeError:
         warning = input_handling()
         return warning
     else:
