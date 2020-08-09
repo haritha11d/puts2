@@ -18,6 +18,9 @@ def input_handling():
     except TypeError:
         warning = "Something wrong! --> input should consist of a vector of real numbers.\n"
         return warning
+    except Exception as e:
+        exception = str(e)
+        return exception
     return values
 
 
@@ -34,6 +37,9 @@ def mean():
     except TypeError:
         warning = input_handling()
         return warning
+    except Exception as e:
+        exception = input_handling()
+        return exception
     else:
         if float(answer).is_integer():
             answer = int(answer)
