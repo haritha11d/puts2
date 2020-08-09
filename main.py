@@ -13,13 +13,18 @@ def input_handling():
     try:
         values = [Fraction(value) for value in values.split(',')]
     except ValueError:
-        warning = "Something wrong! --> input should consist of a vector of real numbers."
+        warning = "Something wrong! --> input should consist of a vector of real numbers.\n"
         return warning
-
+    except TypeError:
+        warning = "Something wrong! --> input should consist of a vector of real numbers.\n"
+        return warning
+    except Exception as e:
+        exception = str(e)
+        return exception
     return values
 
 
-@app.route('/min', methods=['GET', 'POST'])
+@app.route('/min', methods=['POST', 'GET'])
 def minimum():
     try:
         values = input_handling()
@@ -27,6 +32,12 @@ def minimum():
     except ValueError:
         warning = input_handling()
         return warning
+    except TypeError:
+        warning = input_handling()
+        return warning
+    except Exception as e:
+        exception = input_handling()
+        return exception
     else:
         if float(answer).is_integer():
             answer = int(answer)
