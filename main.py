@@ -1,5 +1,6 @@
 from flask import Flask, request
 from fractions import Fraction
+import statistics
 
 app = Flask(__name__)
 
@@ -80,6 +81,28 @@ def minimum():
     try:
         values = input_handling()
         answer = min(values)
+    except ValueError:
+        warning = input_handling()
+        return warning
+    except TypeError:
+        warning = input_handling()
+        return warning
+    except Exception as e:
+        exception = input_handling()
+        return exception
+
+    else:
+        if float(answer).is_integer():
+            answer = int(answer)
+            return "%d \n" % answer
+        return str(float(round(answer, 3))) + " \n"
+
+
+@app.route('/median', methods=['POST', 'GET'])
+def median():
+    try:
+        values = input_handling()
+        answer = statistics.median(values)
     except ValueError:
         warning = input_handling()
         return warning
