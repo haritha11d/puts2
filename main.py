@@ -52,5 +52,26 @@ def mean():
         return str(float(round(answer, 3))) + " \n"
 
 
-if __name__ == "__main__":
+@app.route('/min', methods=['POST', 'GET'])
+def minimum():
+    try:
+        values = input_handling()
+        answer = min(values)
+    except ValueError:
+        warning = input_handling()
+        return warning
+    except TypeError:
+        warning = input_handling()
+        return warning
+    except Exception as e:
+        exception = input_handling()
+        return exception
+    else:
+        if float(answer).is_integer():
+            answer = int(answer)
+            return "%d \n" % answer
+        return str(float(round(answer, 3))) + " \n"
+
+
+if __name__ == '__main__':
     app.run()
