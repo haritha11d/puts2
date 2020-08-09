@@ -8,6 +8,12 @@ class TestCalculatorWebApp(unittest.TestCase):
         main.app.testing = True
         self.app = main.app.test_client()
 
+    def testEmptyPage(self):
+        """Test the page with an empty route"""
+
+        response = self.app.get("/")
+        self.assertEqual(b'Usage: \n<Operation>?A=<Value1, Value2, ..., ValueN>', response.data)
+
     def testAverage(self):
         response = self.app.get("/mean?X=1,2,3")
         self.assertEqual(b'2 \n', response.data)

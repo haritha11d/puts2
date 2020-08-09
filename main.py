@@ -24,6 +24,11 @@ def input_handling():
     return values
 
 
+@app.route('/')
+def index():
+    return 'Usage: \n<Operation>?A=<Value1, Value2, ..., ValueN>'
+
+
 @app.route('/mean', methods=['GET', 'POST'])
 @app.route('/average', methods=['GET', 'POST'])
 @app.route('/avg', methods=['GET', 'POST'])
@@ -46,3 +51,6 @@ def mean():
             return "%d \n" % answer
         return str(float(round(answer, 3))) + " \n"
 
+
+if __name__ == "__main__":
+    app.run()
