@@ -45,6 +45,29 @@ def mean():
     except Exception as e:
         exception = input_handling()
         return exception
+
+    else:
+        if float(answer).is_integer():
+            answer = int(answer)
+            return "%d \n" % answer
+        return str(float(round(answer, 3))) + " \n"
+
+
+@app.route('/max', methods=['POST', 'GET'])
+def maximum():
+    try:
+        values = input_handling()
+        answer = max(values)
+    except ValueError:
+        warning = input_handling()
+        return warning
+    except TypeError:
+        warning = input_handling()
+        return warning
+    except Exception as e:
+        exception = input_handling()
+        return exception
+
     else:
         if float(answer).is_integer():
             answer = int(answer)
@@ -66,6 +89,7 @@ def minimum():
     except Exception as e:
         exception = input_handling()
         return exception
+
     else:
         if float(answer).is_integer():
             answer = int(answer)
