@@ -9,29 +9,23 @@ class TestCalculatorWebApp(unittest.TestCase):
         self.app = main.app.test_client()
 
     def testAverage(self):
-        response = self.app.get("/mean?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
+        response = self.app.get("/min?X=1,2,3")
+        self.assertEqual(b'1 \n', response.data)
 
-        response = self.app.get("/avg?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
+        response = self.app.get("/min?X=1,2,3")
+        self.assertEqual(b'1 \n', response.data)
 
-        response = self.app.get("/average?X=1,2,3")
-        self.assertEqual(b'2 \n', response.data)
+        response = self.app.get("/min?X=1,2,3")
+        self.assertEqual(b'1 \n', response.data)
 
-        response = self.app.get("/average?X=1000,2.5,100")
-        self.assertEqual(b'367.5 \n', response.data)
+        response = self.app.get("/min?X=1000,2.5,100")
+        self.assertEqual(b'2.5 \n', response.data)
 
-        response = self.app.get("/avg?X=1000,2.5,100")
-        self.assertEqual(b'367.5 \n', response.data)
+        response = self.app.get("/min?X=-1.2,-2.5,-100,-9292,-0303,0293/92929")
+        self.assertEqual(b'-9292 \n', response.data)
 
-        response = self.app.get("/mean?X=1000,2.5,100")
-        self.assertEqual(b'367.5 \n', response.data)
-
-        """ Edge Case Testing """
-
-        response = self.app.get("/mean?X=x")
-        self.assertEqual(b'Something wrong! --> input should consist of a vector of real numbers.\n',
-                         response.data)
+        response = self.app.get("/min?X=1000,2.5,100")
+        self.assertEqual(b'2.5 \n', response.data)
 
 
 if __name__ == '__main__':
