@@ -40,6 +40,3 @@ def mean():
             return "%d \n" % answer
         return str(float(round(answer, 3))) + " \n"
 
-
-if __name__ == "__main__":
-    app.run()
